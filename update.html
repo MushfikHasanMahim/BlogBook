@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block head %}
+<title>BlogBook - Update Post</title>
+{% endblock %}
+{% block body %}
+
+<div class="container rounded my-5 shadow p-3" style="width: 90%; background: rgba(1,1,1, 0.3);">
+
+    <div class="container text-center fs-1 my-2 mb-4 fw-bold">Update Post</div>
+    <form method="POST" actions="/create-post" class="needs-validation my-2" >
+      <div class="mb-3" >
+        <label for="title" class="form-label">Title</label>
+        <input type="text" class="text-light bg-transparent form-control" id="email" aria-describedby="emailHelp" name="title" placeholder="Title" value="{{ post.title }}">
+      </div>
+      
+      <div class="mb-3">
+        <label for="password" class="form-label">Description</label>
+        
+        <textarea rows="5" type="text" class="text-light bg-transparent form-control" id="textarea" name="content">{{ post.content }}</textarea>
+      </div>
+     
+    
+      
+      
+      <button type="submit" class="btn btn-primary">
+          Update
+      </button>
+    </form>
+</div>
+<div class="container mb-5" style="height: 15vh;">
+
+</div>
+
+
+
+{% endblock %}

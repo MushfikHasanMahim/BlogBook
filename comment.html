@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<div class="p-2 container-fluid rounded bg-light mb-5">
+  
+  
+     <form class="mx-2 d-flex" method="POST" actions="/create_comment/1">
+                <input class="form-control me-2" type="text" placeholder="Leave a comment!" aria-label="Comment" name="comment">
+                <button class="btn btn-outline-primary" type="submit"><i class="fa fa-send"></i></button>
+     </form>
+       
+  </div>
+{% endblock %}

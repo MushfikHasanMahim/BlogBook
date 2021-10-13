@@ -1,0 +1,340 @@
+{% extends "base.html" %} 
+
+{% block head %}
+    <title>BlogBook - Home</title>
+    <span>{{ share.load() }}</span>
+    <style>
+@media (min-width: 0) {
+    .g-mr-15 {
+        margin-right: 1.07143rem !important;
+    }
+}
+@media (min-width: 0){
+    .g-mt-3 {
+        margin-top: 0.21429rem !important;
+    }
+}
+
+.g-height-50 {
+    height: 50px;
+}
+
+.g-width-50 {
+    width: 50px !important;
+}
+
+@media (min-width: 0){
+    .g-pa-30 {
+        padding: 2.14286rem !important;
+    }
+}
+
+.g-bg-secondary {
+    background-color: #fafafa !important;
+}
+
+.u-shadow-v18 {
+    box-shadow: 0 5px 10px -6px rgba(0, 0, 0, 0.15);
+}
+
+.g-color-gray-dark-v4 {
+    color: #777 !important;
+}
+
+.g-font-size-12 {
+    font-size: 0.85714rem !important;
+}
+
+.media-comment {
+    margin-top:20px
+}
+.username{
+    text-decoration: none;
+    color: black;
+   }
+.username:hover{
+      color: dodger-blue;
+  }
+  
+
+  
+    
+  
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap");
+
+
+
+.ellipsis {
+    color: #a09c9c
+}
+
+hr {
+    color: #a09c9c;
+    margin-top: 4px;
+    margin-bottom: 8px
+}
+
+.muted-color {
+    color: #a09c9c;
+    font-size: 13px
+}
+
+.ellipsis i {
+    margin-top: 3px;
+    cursor: pointer
+}
+
+.icons i {
+    font-size: 25px
+}
+
+.icons .fa-heart {
+    color: red
+}
+
+.icons .fa-smile-o {
+    color: yellow;
+    font-size: 29px
+}
+
+.rounded-image {
+    border-radius: 50% !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 50px
+}
+
+.name {
+    font-weight: 600
+}
+
+.comment-text {
+    font-size: 12px
+}
+
+.status small {
+    margin-right: 10px;
+    color: blue
+}
+
+.form-control {
+    border-radius: 26px
+}
+
+.comment-input {
+    position: relative
+}
+
+.fonts {
+    position: absolute;
+    right: 13px;
+    top: 5px;
+    color: #a09c9c;
+    border: none;
+    background: none;
+    
+}
+
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #8bbafe;
+    outline: 0;
+    box-shadow: none
+}
+.b{
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+    </style>
+{% endblock %} 
+
+
+
+
+{% block body %}
+    <!-- code -->
+
+   
+    <div class="row text-dark">
+    <!-- loop here -->
+        <h1 class="text-light fs-1 fw-bolder text-center mb-1">Posts</h1>
+    {% if posts %} 
+    {% for post in posts %}
+    <!---->
+        <div class="container-fluid col-md-8">
+            <div class="media g-mb-30 media-comment">
+            {% if post.user.profile_pic %}
+                <img class="my-2 d-flex g-width-50 g-height-50 rounded-circle g-mt-3 g-mr-15" src="static/Profile_pic/{{ post.user.profile_pic }}" alt="Image Description">
+            {% else %}
+            <div class="my-2 icon bg-light d-flex align-items-center justify-content-center" style="border-radius: 50%;height: 50px; width: 50px;">
+        <i class="p-2 bg-transparent text-dark fa fa-user" style="font-size:35px;"></i>
+    </div>
+            {% endif %}
+            
+                <div class=" rounded media-body u-shadow-v18 g-bg-secondary g-pa-30">
+                <!-- title -->
+                <div class="fs-2 fw-bold">{{ post.title|safe }}</div>
+           <!-- endtitle -->
+                  <div class="g-mb-15">
+                     <h6 class="mt-2 text-muted h5 g-color-gray-dark-v1 mb-0"><a class="username">by {{ post.user.name }}</a></h6>
+                    <span class="g-color-gray-dark-v4 g-font-size-12">{{ post.date_posted }}</span>
+                  </div>
+                  
+            
+                  <p>{{  post.content.replace('\n', '<br/>')|safe  }}</p>
+            
+                  <ul class="list-inline d-sm-flex my-0">
+                    <li class="list-inline-item g-mr-20">
+                      <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="/like/{{ post.id }}">
+                        <i class="fa fa-thumbs-up g-pos-rel g-top-1 g-mr-3"></i>
+                       {{ post.likes|length}}
+                      </a>
+                    </li>
+                    <!--<li class="list-inline-item g-mr-20">
+                      <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="">
+                        <i class="fa fa-thumbs-down g-pos-rel g-top-1 g-mr-3"></i>
+                        34
+                      </a>
+                    </li>-->
+                    
+                    <li class="list-inline-item ml-auto">
+                      <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="/update/{{ post.id }}">
+                        <i class="fa fa-pencil g-pos-rel g-top-1 g-mr-3"></i>
+                        Edit
+                      </a>
+                    </li>                   
+                    <li class="list-inline-item ml-auto">
+                      <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="/delete/{{ post.id }}">
+                        <i class="fa fa-trash g-pos-rel g-top-1 g-mr-3"></i>
+                        Delete
+                      </a>
+                    </li>
+                   
+                  </ul>
+                  <hr>
+                 <div class="container-fluid d-flex justify-content-end align-items-center">        
+                          <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" data-bs-toggle="collapse" href="#collapse{{ post.id }}" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            <i class="fa fa-comment-o g-pos-rel g-top-1 g-mr-3"></i>
+                            Comments <u>{{ post.comments|length }}</u>
+                          </a>                       
+                 </div>
+                 <hr>
+                  
+                <!-- comment -->
+                
+               
+                
+                
+                <div class="comments collapse" id="collapse{{post.id}}">
+                        {% if post.comments %}
+                        {% for c in post.comments %}                                   <div class="d-flex flex-row mb-2">
+                        {% if c.user.profile_pic %}
+                          <img src="static/Profile_pic/{{ c.user.profile_pic }}" width="40" style="margin-right: 5px;" class="rounded-image"> 
+                        {% else %}
+                          <div style="margin-right: 5px; background: lightgray; width: 40px;height: 40px;" class="text-center p-2 mb-2 rounded-circle">
+                            <i style="" class="text-center fa fa-user fs-3"></i>
+                         </div>
+                        {% endif %}                       
+                            <div class="d-flex flex-column ml-2"> <span class="name"> <a href="#">{{ c.user.name }}</a></span> <small class="ml-2 comment-text"> {{ c.content }}</small>
+                                <div class="d-flex flex-row align-items-center status"> 
+                                <small><a href="/like-comment/{{ c.id }}"><i class="fa fa-thumbs-up"></i></a> <u>{{ c.comment_likes|length }}</u></small>
+                                <small><a class="text-primary b" data-bs-toggle="collapse" href="#collapseExample{{ c.id }}" role="button" aria-expanded="false" aria-controls="collapseExample">Reply</a></small>
+                                <small>{{ timeago.format(c.date_posted, date) }}</small> 
+                                {% if user.id == c.user.id %}
+                                <small><a style="text-decoration:none;" href="/delete-comment/{{ c.id }}">Delete</a></small>
+                                {% endif %}
+                                </div>
+                                <!-- collaspe -->
+                                                               
+                            <div class="collapse" id="collapseExample{{c.id}}">
+                                 <form action="/reply/{{ c.id }}" method="POST">               
+                        <div class="comment-input">
+                         
+                            <input type="text" placeholder="Type something!" aria-label="Comment" name="reply" class="form-control">
+                            <button class="fonts" type="submit"><i class="fa fa-send"></i></button>             
+                        </div>
+                     
+                      </form>
+  
+                            </div>
+                                <!---->
+                            </div>
+                                   
+                            
+                        </div>
+                        <!-- Replys -->
+{% if c.replys %}
+{% for r in c.replys %}
+<div class="container rounded mb-2">
+   <div class="d-flex flex-row mb-2">
+   
+   {% if r.user.profile_pic %}
+       <img src="static/Profile_pic/{{ r.user.profile_pic }}" style="margin-right: 2.5px; width: 29px; height:29px; border-radius:50%; border: 2px solid #24252a; ">
+   {% else %}
+       <div style="border: 2px solid #24252a; margin-right: 5px; background: lightgray; width: 29px;height: 29px;" class="mb-2 rounded-circle">
+       <i style="margin-left: 7.4px; margin-top: 5.1px;" class="text-center fa fa-user fs-6"></i>
+       </div>
+   {% endif %}
+                           
+       <div class="d-flex flex-column">
+          <p style="padding: 0; margin: 0;"> <a href="#"> {{ r.user.name }}</a>
+          {% if r.user.id == current_user.id %}
+          <a href="/delete-reply/{{ r.id }}" style="margin-left: 10px;" class="btn-sm btn btn-outline-dark"><i class="d-flex align-items-center justify-content-end fa fa-trash"></i></a>
+          {% endif %}        
+         </p>
+          <small class="comment-text"> {{ r.content }}</small>
+       </div>
+                        
+   </div>
+</div>                                              
+{% endfor %}
+{% else %}
+<div class="container p-2 my-2 ">replays (0)</div>
+{% endif %}
+<!---->
+  
+                        {% endfor %}
+                        {% endif %}        
+                       <!-- form past -->
+                       
+                       <!---->                              
+                    </div>
+                    <!---->
+                    <form action="/create-comment/{{ post.id }}" method="POST">               
+                        <div class="comment-input">
+                         
+                            <input type="text" placeholder="Leave a comment!" aria-label="Comment" name="cmt" class="form-control">
+                            <button class="fonts" type="submit"><i class="fa fa-send"></i></button>             
+                        </div>
+                      </form>
+                    <!---->
+                
+                <!-- end of comment -->
+                </div>
+            </div>
+        </div> 
+    <!---->
+        
+    {% endfor %} 
+    {% else %}
+        <div style="width:90%" class="container p-4 text-dark mt-5 text-center bg-light rounded fs-6">There is no post yet.</div>
+    {% endif %} 
+    <!-- endloop -->       
+    </div>
+       
+    <!-- code -->
+
+    
+
+
+    <!-- create_post shortcut -->
+    <a href="{{ url_for('create_post') }}" class="btn btn-sm" style="background: rgba(10, 255, 198, 0.9); backdrop-filter: blur(2rem); position: fixed; top: 75%; right: 15px;">
+        <i class="fa fa-edit"></i>
+    </a>
+    <!-- endof shortcut -->
+{% endblock %}

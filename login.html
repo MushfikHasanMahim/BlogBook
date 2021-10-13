@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block head %}
+<title>BlogBook - Login</title>
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/A.style.css.pagespeed.cf.EsokhafFue.css">
+{% endblock %}
+
+{% block body %}
+
+<div class="container rounded my-5 shadow p-3" style="width: 90%; background: rgba(1, 1, 1, 0.3); backdrop-filter: blur(1rem)">
+
+    <div class="container text-center fs-1 my-2 mb-4 fw-bold">Login</div>
+    <div class="container icon bg-light d-flex align-items-center justify-content-center" style="border-radius: 50%;height: 130px; width: 130px;">
+<i class="p-1 bg-light text-dark fa fa-user" style="font-size:70px;"></i>
+</div>
+    <form actions="/login" method="POST"  class="needs-validation my-2" >
+      <div class="mb-3" >
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <input type="email" class="text-light bg-transparent form-control" id="email" aria-describedby="emailHelp" name="email" placeholder="Enter your email">
+      </div>
+      
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="bg-transparent text-light form-control" id="password" name="password" placeholder="Enter your password">
+      </div>
+     
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="text-light bg-transparent form-check-input" id="exampleCheck1" name="remember" style="border:1px solid #fff;">
+        <label class="form-check-label" for="exampleCheck1">Remember me</label>
+      </div>
+      
+      
+      <button type="submit" class="btn btn-outline-success">
+          Login
+      </button>
+    </form>
+        <div class="text-muted my-2 mb-3">Don't have any account? <a href="{{ url_for('register') }}">Sign Up</a> </div>
+</div>
+</div>
+
+
+{% endblock %}

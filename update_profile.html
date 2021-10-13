@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block head %} 
+<title>BlogBook-Update_Profile</title>
+<style>
+.fonts {
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    color: rgba(1, 1, 1, 0.3);
+    border: none;
+    background: white;
+    border-radius: 20%;
+    box-shadow: 0px 0px 5px rgba(1, 1, 1, 0.5);
+    opacity: 0.6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    text-decoration: none;
+    height: 35px;
+    
+}
+.fonts:hover{
+    opacity: 1;
+}
+</style>
+{% endblock %} 
+
+{% block body %}
+
+<div class="container text-light fs-1 text-center">
+Profile
+</div>
+  
+  
+  
+  
+<div class="container card-group rounded my-5" style="max-width: 500px;">
+  <div class="card">
+  {% if profile_pic  %}
+    <img src="{{ profile_pic }}" class="container my-2 card-img-top" style="border-radius: 50%; width: 150px;" alt="profile picture">
+  {% else %}
+    <div class="mt-3 container icon bg-light d-flex align-items-center justify-content-center" style="border-radius: 50%;height: 130px; width: 130px;">
+        <i class="p-1 bg-light text-dark fa fa-user" style="font-size:70px;"></i>
+    </div>
+  {% endif %}
+  
+    <div class="container  text-center text-muted">@{{ user.name }}</div>  
+            
+    
+    <div class="card-body text-dark">
+      <h5 class="card-title text-center">Update Account Info</h5>
+      <form action="/update_profile/{{ user.name }}" method="POST">               
+          <input type="text" placeholder="{{ user.name }}" aria-label="name" name="name" class="my-2 form-control">
+          <input type="text" placeholder="{{ user.email }}" aria-label="email" name="email" class="mb-2 form-control">
+          <input type="password" placeholder="Enter Previous Password" aria-label="password" name="password" class="mb-2 form-control">
+          <input type="password" placeholder="Enter New Password" aria-label="password" name="password" class="mb-2 form-control">
+          
+          <button class="my-2 btn-outline-success btn btn-sm " type="submit">Update</button>
+                            
+      </form> 
+    </div>                      
+                                            
+                                                            
+                                                                                            
+  </div>
+</div>
+
+{% endblock %}

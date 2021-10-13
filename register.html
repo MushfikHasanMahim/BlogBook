@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>BlogBook - Register</title>
+{% endblock %}
+
+{% block body %}
+
+
+<div class="container rounded my-5 shadow p-3" style="width: 90%; background: rgba(1, 1, 1, 0.3); backdrop-filter: blur(1rem)">
+ <div class="container text-center fs-1 my-2 mb-4 fw-bold">Sign Up</div>
+     <div class="container icon bg-light d-flex align-items-center justify-content-center" style="border-radius: 50%;height: 130px; width: 130px;">
+    <i class="p-1 bg-light text-dark fa fa-user" style="font-size:70px;"></i>
+    </div>
+<form actions="/register" method="POST" class="row g-3 needs-validation" novalidate>
+
+  <div class="col-md-4">
+    <label for="validationCustom01" class="form-label">Username</label>
+    <input type="text" class="text-light bg-transparent form-control" id="validationCustom01" name="name" required placeholder="Enter your name">
+    <div class="invalid-feedback">
+      Please choose a valid username!
+    </div>
+  </div>
+  
+  <div class="col-md-4">
+    <label for="validationCustom02" class="form-label">Email</label>
+    <input type="email" class="text-light bg-transparent form-control" id="validationCustom02" name="email" placeholder="Enter your email"  required>
+    <div class="invalid-feedback">
+      Please choose a valid email!
+    </div>
+  </div>
+  
+  <div class="col-md-4">
+    <label for="validationCustom02" class="form-label">Password</label>
+    <input type="password" name="password" class="text-light bg-transparent form-control" id="validationCustom02" required placeholder="Enter your password">
+    <div class="invalid-feedback">
+      Please choose a valid password!
+    </div>
+  </div>
+  
+  
+  <div class="col-md-4">
+    <label for="validationCustom02" class="form-label">Confirm Password</label>
+    <input type="password" name="confirm_password" class="text-light bg-transparent form-control" id="validationCustom02" required placeholder="Enter your password again">
+    <div class="invalid-feedback">
+      Please enter a valid password!
+    </div>
+  </div>  
+   
+
+  <div class="col-12">
+    <button class="btn btn-outline-success" type="submit">Register</button>
+  </div>
+</form>
+
+    <div class="text-muted my-2 mb-3">Already have an account? <a href="{{ url_for('login') }}">Login</a> </div>
+</div>
+
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+</script>
+{% endblock %}

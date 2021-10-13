@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>Control Panel</title>
+{% endblock %} 
+
+{% block body %}
+    <div class="txxt-center text-dark bg-light p-2 rounded container my-2 "> User Info</div>
+    {% for user in User.query.all() %}    
+    <div>{{ loop.index }}. {{user.name}} - {{user.email}} - {{user.date_posted }}</div>    
+    {% endfor %}
+
+<div class="txxt-center text-dark bg-light p-2 rounded container my-2 ">All Posts</div>
+posts ({{ Post.query.all() }})
+<div class="txxt-center text-dark bg-light p-2 rounded container my-2 ">All Comments </div>
+comments ( {{ Comment.query.all() }})
+
+{% endblock %}

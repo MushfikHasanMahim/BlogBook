@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block head %}
+<title>BlogBook - Search</title>
+<span>{{ share.load() }}</span>
+{% endblock %}
+
+
+{% block body %}
+  
+    <h1 class="text-light fs-1 fw-bolder text-center mb-5">Search Results</h1>
+    {% if posts %}
+    {% for post in posts %}
+    <div class="container-fluid; p-3">
+    <div class="text-dark container rounded my-2 shadow-lg p-3 mb-5 bg-body ">
+        <div class="container card-header">
+        <div class="fs-2 fw-bold">{{ post.title|safe }}</div>
+        <span style="font-size:14px;" class="fw-lighter text-muted">
+       
+        Posted by {{ User.query.filter_by(id=post.author).first().name }} on {{ post.date_posted }}
+        
+        </span>
+                {% if user.id == User.query.filter_by(id=post.author).first().id %}             
+        
+  
+        
+        
+        
+        <div class="dropdown my-2 d-flex align-items-center justify-content-end">
+        <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"></button>
+          
+          <ul class="dropdown-menu" aria-labelledby="">
+            <h4 class="text-center"> Actions </h4>
+            <li>
+            
+            <span class="btn"><a class="mx-2 my-2 btn btn-sm btn-outline-primary" type="submit" href="/delete/{{ post.id }}">
+                <i class="fa fa-trash"></i>
+            </a>Delete</span>
+            </li>
+            
+            
+            <li>
+            
+            <span class="container"><a class="mx-2 mb-2 btn btn-sm btn-outline-primary" type="submit" href="/update/{{ post.id }}">
+                <i class="fa fa-pencil"></i>
+            </a>Update</span>
+            </li>
+            
+            
+            
+          </ul>
+        </div>
+        {% endif %}
+        </div>
+        
+        
+        <div class="card-body">
+            <p class="card-text">{{ post.content.replace('\n', '<br>')|safe }}</p> 
+        </div>
+       
+  <div class="card-footer">
+   {{ share.create(title="Share with", mobile_sites='facebook') }}
+  </div>
+  </div>
+  </div>
+    
+    
+    {% endfor %}
+    {% else %}
+    <div class="p-3 rounded container text-center bg-light my-2 text-dark" style="width:90%;">
+        No result found
+    </div>
+    {% endif %}
+    
+
+
+
+
+{% endblock %}
